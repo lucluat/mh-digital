@@ -8,7 +8,7 @@
         <version>3.4.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.student</groupId>
+    <groupId>com.server</groupId>
     <artifactId>server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>server</name>
@@ -93,7 +93,7 @@
                                     <fluentSetters>true</fluentSetters>
                                 </generate>
                                 <target>
-                                    <packageName>com.student.model</packageName>
+                                    <packageName>com.server.model</packageName>
                                     <directory>target/generated-sources/jooq</directory>
                                 </target>
                             </generator>
