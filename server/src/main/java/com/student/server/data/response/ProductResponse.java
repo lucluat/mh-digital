@@ -15,7 +15,7 @@ public class ProductResponse {
 
     private String title;
 
-//    private String content;
+    private String content;
 
     private String link;
 
