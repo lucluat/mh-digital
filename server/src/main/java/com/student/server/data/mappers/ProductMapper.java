@@ -5,8 +5,6 @@ import com.student.server.data.dto.ProductDTO;
 import com.student.server.data.response.ProductResponse;
 import org.jooq.JSON;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
@@ -14,13 +12,13 @@ public interface ProductMapper {
 
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
-    @Mapping(source = "content", target = "content", qualifiedByName = "mapContent")
+//    @Mapping(source = "content", target = "content", qualifiedByName = "mapContent")
     ProductResponse productRecordToResponse(ProductRecord studentRecord);
 
-    @Mapping(source = "content", target = "content", qualifiedByName = "mapContent")
+//    @Mapping(source = "content", target = "content", qualifiedByName = "mapContent")
     ProductResponse productDTOToResponse(ProductDTO studentRecord);
 
-    @Named("mapContent")
+//    @Named("mapContent")
     default String jsonToString(JSON json) {
         System.out.println(json.toString());
         return json.toString();
