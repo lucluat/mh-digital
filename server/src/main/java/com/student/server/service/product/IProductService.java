@@ -9,4 +9,7 @@ public interface IProductService {
 
     List<ProductResponse> getProducts(ProductRequest request);
 
+    List<ProductResponse> getProducts();
+
+    ProductResponse detail(String id);
 }

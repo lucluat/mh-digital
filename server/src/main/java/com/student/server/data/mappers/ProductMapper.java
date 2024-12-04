@@ -22,7 +22,6 @@ public interface ProductMapper {
 
     @Named("mapContent")
     default String jsonToString(JSON json) {
-        System.out.println(json.toString());
         return json.toString();
     }
 

@@ -27,4 +27,9 @@ public class ProductRepository extends AbstractCRUDRepository<ProductRecord, Pro
                 .fetch(ProductMapper.INSTANCE::productRecordToResponse);
     }
 
+    public List<ProductResponse>getProducts(){
+        return dsl.selectFrom(PRODUCT)
+                .fetch(ProductMapper.INSTANCE::productRecordToResponse);
+    }
+
 }

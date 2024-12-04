@@ -21,18 +21,22 @@ request.interceptors.response.use(
     return config;
   },
   (error) => {
-    // if (error.response.status === 404) {
-    //   window.location.href = window.location.origin + "/404";
-    //   return;
-    // }
-    // if (error.response.status === 401) {
-    //   window.location.href = window.location.origin + "/401";
-    //   return;
-    // }
-    // if (error.response.status === 403) {
-    //   window.location.href = window.location.origin + "/403";
-    //   return;
-    // }
+    if (error.response.status === 404) {
+      window.location.href = window.location.origin + "/404";
+      return;
+    }
+    if (error.response.status === 400) {
+      window.location.href = window.location.origin + "/400";
+      return;
+    }
+    if (error.response.status === 401) {
+      window.location.href = window.location.origin + "/401";
+      return;
+    }
+    if (error.response.status === 403) {
+      window.location.href = window.location.origin + "/403";
+      return;
+    }
     return Promise.reject(error);
   }
 );

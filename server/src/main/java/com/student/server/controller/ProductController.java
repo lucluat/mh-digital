@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,9 +23,19 @@ public class ProductController {
 
     private final IProductService productService;
 
-    @GetMapping
+    @GetMapping("/page")
     public ResponseObject<List<ProductResponse>> getStudents(ProductRequest request) {
         return new ResponseObject<>(productService.getProducts(request), HttpStatus.OK, "Get products successfully");
+    }
+
+    @GetMapping
+    public ResponseObject<List<ProductResponse>> getStudents() {
+        return new ResponseObject<>(productService.getProducts(), HttpStatus.OK, "Get products successfully");
+    }
+
+    @GetMapping("/{id}")
+    public ResponseObject<ProductResponse> detail(@PathVariable("id") String id) {
+        return new ResponseObject<>(productService.detail(id), HttpStatus.OK, "Get products successfully");
     }
 
 }
