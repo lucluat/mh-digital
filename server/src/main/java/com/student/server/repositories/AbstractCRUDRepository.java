@@ -1,6 +1,7 @@
 package com.student.server.repositories;
 
 import com.student.server.data.dto.IdentifiableDTO;
+import io.reactivex.rxjava3.core.Single;
 import org.jooq.DSLContext;
 import org.jooq.Field;
 import org.jooq.Table;
@@ -41,6 +42,15 @@ public abstract class AbstractCRUDRepository<R extends UpdatableRecord<?>, P ext
         record.set(idField, UUID.randomUUID().toString());
         record.store();
         return record.into(pojoClass);
+    }
+
+    public Single<P> createWithSingle(P pojo) {
+        return Single.fromCallable(()->{
+            R record = dsl.newRecord(table, pojo);
+            record.set(idField, UUID.randomUUID().toString());
+            record.store();
+            return record.into(pojoClass);
+        });
     }
 
 }

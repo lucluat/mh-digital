@@ -9,8 +9,10 @@ import jakarta.validation.Path;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -26,6 +28,14 @@ public class GlobalRestExceptionHandler {
             log.error(ex.getMessage());
             ApiError apiError = new ApiError(ex.getMessage());
             return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
+        } else if (ex instanceof MethodArgumentNotValidException) {
+            MethodArgumentNotValidException methodArgumentNotValidException = (MethodArgumentNotValidException) ex;
+            List<ErrorModel> errors = methodArgumentNotValidException.getBindingResult()
+                    .getFieldErrors()
+                    .stream()
+                    .map(fieldError -> new ErrorModel(fieldError.getField(), fieldError.getDefaultMessage()))
+                    .collect(Collectors.toList());
+            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
         } else if (ex instanceof ConstraintViolationException) {
             Set<ConstraintViolation<?>> violations = ((ConstraintViolationException) ex).getConstraintViolations();
             List<ErrorModel> errors = violations.stream()
