@@ -8,6 +8,11 @@ import Introduction from "./page/introduction/Introduction";
 import Recruit from "./page/recruit/Recruit";
 import News from "./page/news/News";
 import Contact from "./page/contact/Contact";
+import Product from "./page/product/Product";
+import NotFound from "./component/404";
+import BadRequest from "./component/400";
+import Forbidden from "./component/403";
+import UnAuthorized from "./component/401";
 function App() {
     return (
         <div className="App">
@@ -25,6 +30,11 @@ function App() {
             />
             <BrowserRouter basename={"/"}>
                 <Routes>
+                    <Route path="/404" element={<NotFound/>} />
+                    <Route path="/400" element={<BadRequest/>} />
+                    <Route path="/403" element={<Forbidden/>} />
+                    <Route path="/401" element={<UnAuthorized/>} />
+                    {/*<Route path="/not-authorization" key="not-authorization" element={<NotAuthorized />} />*/}
                     <Route
                         path="/"
                         element={
@@ -38,6 +48,14 @@ function App() {
                         element={
                             <UserFragment>
                                 <Introduction/>
+                            </UserFragment>
+                        }
+                    />
+                    <Route
+                        path="/product/:id"
+                        element={
+                            <UserFragment>
+                                <Product/>
                             </UserFragment>
                         }
                     />

@@ -11,6 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ProductRequest extends PageableRequest {
 
-    private String name;
+    private String title;
 
 }

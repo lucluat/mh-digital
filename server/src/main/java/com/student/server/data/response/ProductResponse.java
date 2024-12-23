@@ -1,22 +1,16 @@
 package com.student.server.data.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-public class ProductResponse {
+public record ProductResponse(String id, String title, String coverImage, String footerImage, List<Content> content,
+                              String link) {
 
-    private String id;
+    public record Content(String title, String image, List<SubContent> subContents) {
 
-    private String title;
+        public record SubContent(String title, String passage) {
 
-    private String content;
+        }
 
-    private String link;
+    }
 
 }
